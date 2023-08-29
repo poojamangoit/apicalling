@@ -3,11 +3,14 @@ import axios from "axios";
 import "./style.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import VisibilityIcon from '@mui/icons-material/Visibility';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from "@mui/material";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/photos")
@@ -31,6 +34,14 @@ const Products = () => {
     );
   };
 
+  const toggleViewIcon = (productId) => {
+    
+    setProducts((prevProducts) =>
+    prevProducts.map(
+      (product) =>
+      product.id === productId ? {...product, inView:true}:product
+    ))
+  };
   return (
     <>
       <div className="cart-button">
@@ -41,16 +52,24 @@ const Products = () => {
       <div className="products">
         {products.map((product) => (
           <div key={product.id} className="product">
-            <div className="wishlist-icon">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpMc56BwuOwlG1J4m_raQ7oxa9RqPBk2WQeA&usqp=CAU" />
-              <IconButton className="my-icon">
-                <FavoriteBorderIcon  />
-              </IconButton>
+            <div className="imgDiv">
+              <div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpMc56BwuOwlG1J4m_raQ7oxa9RqPBk2WQeA&usqp=CAU" />
+              </div>
+              <div>
+                <IconButton className="my-icon" onClick={()=>toggleViewIcon(product.id)}>
+                {product.inView ? (<FavoriteIcon/>):(<FavoriteBorderIcon />)}
+                </IconButton>
+                
+              </div>
             </div>
             <h3>{product.title}</h3>
             <p>Price: {product.id * 1000}</p>
 
-            <button className="add-cart-btn" onClick={() => handleAddToCart(product.id)}>
+            <button
+              className="add-cart-btn"
+              onClick={() => handleAddToCart(product.id)}
+            >
               {product.inCart ? "Go to Cart" : "Add to Cart"}
             </button>
             {/* <button onClick={() => handleViewImage(product.image)}>

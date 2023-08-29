@@ -18,10 +18,10 @@
 .product{
   padding: 10px;
 }
-.product img {
+/* .product img {
   width: 50%;
   height: 50%;
-}
+} */
 .product img:hover{
   transform: scale(1.05);
 }
@@ -29,13 +29,17 @@
   background-color: aliceblue;
   border: 2px solid black;
 }
-.my-icon
+ .my-icon
 {
   /* margin-bottom: 225px;
   margin-left: -30px; */
-  margin-bottom: 225px;
+  margin-bottom: 455px;
     margin-left: 10px;
     background-color: aliceblue;
     border-radius: 50%;
+}
+.imgDiv{
+  display: flex;
+  margin-left: 90px;
 }
 
