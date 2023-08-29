@@ -35,7 +35,7 @@ const Users = () => {
   return (
     <>
       <div className="user-list">
-        <h2>User-List</h2>
+        <h2>Vite Project</h2>
         <button onClick={toggleSortDirection}>
           Sort by Name: {sortDirection === "asc" ? "Ascending" : "Descending"}
         </button>
